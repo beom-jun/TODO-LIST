@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 <link rel="stylesheet" href="todo.css">
+<script src="https://kit.fontawesome.com/2c827c8cca.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
  
     <div class="container">
-        <h1>TO DO LIST</h1>
-        <section class="input-area">
-            <input type="text number"  id="task-input"/>
+        <h1 class="todo-padding-top indie-flower-regular" style="margin: 30px;">TO DO LIST</h1>
+        <section class="input-area padding">
+            <input type="text number" style="border-radius: 20px; width: 400px; height: 40px; font-size: 20px;"   id="task-input"/>
             <button id="add-button">+</button>
         </section>
 
@@ -24,10 +27,12 @@
         <section class="task-area">
             <div class="flexbox">
                 <div id="under-line"></div>
-               <div>as</div>
-               <div>as</div>
-               <div>as</div>
+               <div class="indie-flower-regular"><strong>My Task</strong></div>
+               <div class="indie-flower-regular"><strong>Finished</strong></div>
+               <div class="indie-flower-regular"><strong>Unfinished</strong></div>
             </div>
+
+            
 
             <div id = "task-board">
                 
