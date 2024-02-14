@@ -5,10 +5,29 @@ body{
     background-size: cover;
 }
 
+.indie-flower-regular {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+
+.todo-padding-top{
+    padding-top: 20px;
+    text-align: center;
+}
+
 .container{
     background-color: white;
-    min-height: 100vh;
+    min-height: 70vh;
+    max-width: 120vh;
     box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    text-align: center;
+    margin-top: 120px;
+}
+
+.padding{
+    padding-bottom: 50px;
 }
 
 .task-area{
@@ -19,6 +38,8 @@ body{
     display: flex;
     border-bottom: 1px solid aquamarine;
     position: relative;
+    justify-content: center;
+    font-size: 20px;
 }
 
 .flexbox div{
@@ -29,8 +50,8 @@ body{
     height: 4px;
     background-color: violet;
     position: absolute;
-    width: 60px;
-    left: 0px;
+    width: 75px;
+    left: 355px;
     top: 52px;
     padding: 0px;
 }
@@ -38,5 +59,25 @@ body{
 .task{
     display: flex;
     justify-content: space-between;
-    padding: 1em;
+    padding: 5px;    
+}
+
+
+.task-done{
+    text-decoration: line-through red;
+    color: black;
+    width: 107vh;
+    padding: 1px;
+    text-align: left;
+    background-color: rgb(116, 113, 113);
+}
+
+
+.position{
+    height: 100vh;
+        background-color: blanchedalmond;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column ;
 }
