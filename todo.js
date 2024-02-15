@@ -14,7 +14,18 @@
 let taskinput = document.getElementById("task-input")
 let addbutton = document.getElementById("add-button")
 let tasklist =[]
+let tabs = document.querySelectorAll(".task-tabs div")
+let mode='my'
+let filterlist =[]
+let nothing = false
 addbutton.addEventListener("click",addtask)
+
+taskinput.addEventListener("focus",function(){taskinput.value=''})
+
+for(let i=1;i<tabs.length;i++){
+    tabs[i].addEventListener("click",function(event)
+    {filter(event)} )
+}
 
 
 function addtask(){
@@ -25,39 +36,52 @@ function addtask(){
         iscomplet:false
     }
     tasklist.push(task)
-    console.log(tasklist)
+    
     render()
 }
 
+
+
 function render(){
+    
+
+    let list =[]
+    if(mode==="my"){
+        list =tasklist;
+    }else if(mode==="ongoing" || mode ==="done"){
+        list = filterlist;
+    }
+    
+    
+    
     let resulthtml ='';
-    for(let i = 0; i< tasklist.length;  i++){
-        if(tasklist[i].iscomplet ==true){
+    for(let i = 0; i< list.length;  i++){
+        if(list[i].iscomplet ==true){
             resulthtml+= `<div class="task" style="background-color: gary">
-            <div class="task-done">${tasklist[i].taskcontent}</div>
+            <div class="task-done">${list[i].taskcontent}</div>
             <div>
-                <button onclick="togglecomplete('${tasklist[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
-                <button onclick="deltask('${tasklist[i].id}')"><i class="fa-solid fa-eraser"></i></button>
+                <button onclick="togglecomplete('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
+                <button onclick="deltask('${list[i].id}')"><i class="fa-solid fa-eraser"></i></button>
             </div>
         </div>`
         }else{
             resulthtml += `<div class="task">
-        <div>${tasklist[i].taskcontent}</div>
+        <div>${list[i].taskcontent}</div>
         <div>
-            <button onclick="togglecomplete('${tasklist[i].id}')"><i class="fa-solid fa-user-check"></i></button>
-            <button onclick="deltask('${tasklist[i].id}')"><i class="fa-solid fa-eraser"></i></button>
+            <button onclick="togglecomplete('${list[i].id}')"><i class="fa-solid fa-user-check"></i></button>
+            <button onclick="deltask('${list[i].id}')"><i class="fa-solid fa-eraser"></i></button>
 
         </div>
     </div>`
-        }
 
-    
+        }
+        
     }
     document.getElementById("task-board").innerHTML = resulthtml
 }
 
 function togglecomplete(id){
-    console.log("id:",id)
+    
     for(let i =0;i<tasklist.length;i++){
         if(tasklist[i].id ==id){
             tasklist[i].iscomplet= !tasklist[i].iscomplet;
@@ -65,7 +89,7 @@ function togglecomplete(id){
         }
     }
     render();
-    console.log(tasklist);
+    
 }
 
 
@@ -82,3 +106,63 @@ function deltask(id){
 function randomidgenerate(){
     return Math.random().toString(36).substr(2, 16);
 }
+
+function filter(event){
+    
+    
+    mode = event.target.id
+    filterlist =[]
+    if(mode ==="my"){
+        render() ;
+    }else if(mode ==="ongoing"){
+       
+        for(let i=0; i<tasklist.length; i++){
+            if(tasklist[i].iscomplet === false){
+                filterlist.push(tasklist[i])
+            }
+        }
+        render()
+        
+    }else if(mode ==="done"){
+        
+        for(let i=0; i<tasklist.length; i++){
+            if(tasklist[i].iscomplet ){
+                filterlist.push(tasklist[i])
+            }  
+        }
+        
+    }
+    render()
+}
+
+
+//input란에 값이 비었으면 버튼 블락
+function buttondisabled(){
+    if(document.getElementById("task-input").value==="") { 
+           document.getElementById('add-button').disabled = true; 
+       } else { 
+           document.getElementById('add-button').disabled = false;
+       }
+   }
+
+   if(taskinput.value=''){
+        nothing =true
+   }if(nothing=true){
+    addbutton.disabled = true
+   }
+
+   function empty(taskinput){
+    if (taskinput.defaultValue==taskinput.value) {
+       taskinput.value = "";
+    }
+  }
+
+
+  //enter 누르면 input 작성 값 출력
+  taskinput.addEventListener("keypress", (e)=>{
+    if (e.key == "Enter") {
+        e.preventDefault();
+        addbutton.click()
+    }
+}
+)
