@@ -7,8 +7,9 @@ body{
 
 .indie-flower-regular {
     font-family: "Indie Flower", cursive;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
+    padding: 0px;
   }
   
 
@@ -43,7 +44,7 @@ body{
 }
 
 .flexbox div{
-    padding: 1em;
+    padding: 10px;
 }
 
 #under-line{
@@ -81,3 +82,8 @@ body{
         align-items: center;
         flex-direction: column ;
 }
+
+.task-tabs div{
+    cursor: pointer; 
+}
+
