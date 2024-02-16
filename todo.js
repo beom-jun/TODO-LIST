@@ -9,7 +9,7 @@
 //진행 중 끝남 탭을 누르면 언더바가 이동
 //끝남 탭은 끝난 아이템만, 진행중 탭은 진행중인 아이템만
 //전체 탭을 누르면 다시 전체 아이템으로 돌아옴
-
+let underline =document.getElementById("under-line")
 
 let taskinput = document.getElementById("task-input")
 let addbutton = document.getElementById("add-button")
@@ -88,8 +88,8 @@ function togglecomplete(id){
             break;
         }
     }
-    render();
-    
+    render()
+    console.log(tasklist)
 }
 
 
@@ -100,7 +100,9 @@ function deltask(id){
             break;
         }
     }
+    
     render()
+    console.log(tasklist)
 }
 
 function randomidgenerate(){
@@ -109,11 +111,19 @@ function randomidgenerate(){
 
 function filter(event){
     
-    
     mode = event.target.id
+    
+    if(event)
+    {   
+        underline.style.left = event.target.offsetLeft+"px"
+        underline.style.width=event.target.offsetWidth+"px"
+        underline.style.top=event.target.offsetTop + (event.target.offsetHeight -4)+"px"
+    }
+
+
     filterlist =[]
     if(mode ==="my"){
-        render() ;
+       render() ;
     }else if(mode ==="ongoing"){
        
         for(let i=0; i<tasklist.length; i++){
@@ -121,18 +131,18 @@ function filter(event){
                 filterlist.push(tasklist[i])
             }
         }
-        render()
+       render()
         
     }else if(mode ==="done"){
         
         for(let i=0; i<tasklist.length; i++){
-            if(tasklist[i].iscomplet ){
+            if(tasklist[i].iscomplet ==true ){
                 filterlist.push(tasklist[i])
             }  
         }
-        
+         render()
     }
-    render()
+  
 }
 
 
@@ -151,18 +161,13 @@ function buttondisabled(){
     addbutton.disabled = true
    }
 
-   function empty(taskinput){
-    if (taskinput.defaultValue==taskinput.value) {
-       taskinput.value = "";
-    }
-  }
-
-
+   
   //enter 누르면 input 작성 값 출력
   taskinput.addEventListener("keypress", (e)=>{
     if (e.key == "Enter") {
         e.preventDefault();
         addbutton.click()
+        taskinput.value = "";
     }
 }
 )
