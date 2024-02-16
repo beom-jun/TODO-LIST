@@ -11,7 +11,14 @@ body{
     font-style: normal;
     padding: 0px;
   }
-  
+
+.inputbox{
+    border-radius: 20px; 
+    width: 400px; 
+    height: 40px; 
+    font-size: 20px; 
+    text-align: center;
+}
 
 .todo-padding-top{
     padding-top: 20px;
@@ -33,6 +40,7 @@ body{
 
 .task-area{
     border: 1px solid aquamarine;
+    padding :0px   
 }
 
 .flexbox{
@@ -51,16 +59,18 @@ body{
     height: 4px;
     background-color: violet;
     position: absolute;
-    width: 75px;
-    left: 355px;
-    top: 52px;
+    width: 80px;
+    left: 385px;
+    top: 38px;
     padding: 0px;
+    transition: 0.5s
 }
 
 .task{
     display: flex;
     justify-content: space-between;
-    padding: 5px;    
+    padding: 5px; 
+       
 }
 
 
@@ -87,3 +97,16 @@ body{
     cursor: pointer; 
 }
 
+@media(max-width : 600px){
+    .inputbox{
+        width: 320px;
+    }
+    .container{
+    min-height: 800px;
+    max-width: 390px;
+    padding: 0px;
+    }
+    .task-done{
+        width: 305px;
+    }
+}
