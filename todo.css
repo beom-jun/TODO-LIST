@@ -59,9 +59,9 @@ body{
     height: 4px;
     background-color: violet;
     position: absolute;
-    width: 80px;
+    width: 87px;
     left: 385px;
-    top: 38px;
+    top: 46px;
     padding: 0px;
     transition: 0.5s
 }
