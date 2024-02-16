@@ -96,7 +96,9 @@ function togglecomplete(id){
 function deltask(id){
     for(let i=0; i<tasklist.length; i++){
         if(tasklist[i].id == id){
-            tasklist.splice(i,1);
+            tasklist.splice(i,1)
+
+            filterlist = filterlist.filter(task => task.id !== id);
             break;
         }
     }
