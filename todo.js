@@ -15,7 +15,7 @@ let taskinput = document.getElementById("task-input")
 let addbutton = document.getElementById("add-button")
 let tasklist =[]
 let tabs = document.querySelectorAll(".task-tabs div")
-let mode='my'
+let mode= 'my'
 let filterlist =[]
 let nothing = false
 addbutton.addEventListener("click",addtask)
@@ -26,7 +26,6 @@ for(let i=1;i<tabs.length;i++){
     tabs[i].addEventListener("click",function(event)
     {filter(event)} )
 }
-
 
 function addtask(){
      
@@ -40,11 +39,7 @@ function addtask(){
     render()
 }
 
-
-
 function render(){
-    
-
     let list =[]
     if(mode==="my"){
         list =tasklist;
@@ -52,8 +47,7 @@ function render(){
         list = filterlist;
     }
     
-    
-    
+       
     let resulthtml ='';
     for(let i = 0; i< list.length;  i++){
         if(list[i].iscomplet ==true){
@@ -88,7 +82,7 @@ function togglecomplete(id){
             break;
         }
     }
-    render()
+    filter();
     console.log(tasklist)
 }
 
@@ -103,7 +97,7 @@ function deltask(id){
         }
     }
     
-    render()
+    filter();
     console.log(tasklist)
 }
 
@@ -112,9 +106,9 @@ function randomidgenerate(){
 }
 
 function filter(event){
-    
+    if(event){
     mode = event.target.id
-    
+    }
     if(event)
     {   
         underline.style.left = event.target.offsetLeft+"px"
@@ -124,16 +118,13 @@ function filter(event){
 
 
     filterlist =[]
-    if(mode ==="my"){
-       render() ;
-    }else if(mode ==="ongoing"){
+    if(mode ==="ongoing"){
        
         for(let i=0; i<tasklist.length; i++){
             if(tasklist[i].iscomplet === false){
                 filterlist.push(tasklist[i])
             }
         }
-       render()
         
     }else if(mode ==="done"){
         
@@ -142,15 +133,15 @@ function filter(event){
                 filterlist.push(tasklist[i])
             }  
         }
-         render()
-    }
-  
-}
 
+    }
+    render();
+}
 
 //input란에 값이 비었으면 버튼 블락
 function buttondisabled(){
-    if(document.getElementById("task-input").value==="") { 
+   
+    if(document.getElementById("task-input").value==="" || document.getElementById("task-input").value===" " || document.getElementById("task-input").value==="  ") { 
            document.getElementById('add-button').disabled = true; 
        } else { 
            document.getElementById('add-button').disabled = false;
@@ -162,8 +153,8 @@ function buttondisabled(){
    }if(nothing=true){
     addbutton.disabled = true
    }
-
    
+
   //enter 누르면 input 작성 값 출력
   taskinput.addEventListener("keypress", (e)=>{
     if (e.key == "Enter") {
